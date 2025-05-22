@@ -12,8 +12,9 @@ Movieland is a web application for browsing, searching, and reviewing movies. It
 - **Admin Panel:** Admins can add, update, or remove movies from the database.
 
 ## Screenshots
+The documentation of Movieland
 
-*(Add screenshots of the homepage, movie list, favorites, review form, and admin dashboard here.)*
+![View 1](https://github.com/nrhdyt3012/DicodingEvent/blob/main/Screenshot_20250521_084013_Screenshot_20250521_084117_Screenshot_20250521_084145_Screenshot_20250521_084204_Screenshot_20250521_084219_Screenshot_20250521_084229.jpeg)
 
 ## Installation
 
