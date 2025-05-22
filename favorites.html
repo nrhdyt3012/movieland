@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style(1).css">
+    <title>Movieland</title>
+</head>
+<body style="background-color:#111111">
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <img src="uploads/images/movieland2 rev.png">
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="home.php" class="link">Home</a></li>
+                    <li><a href="favorites.html" class="link active">Favorites</a></li>
+                    <li><a href="trending.html" class="link">Trending</a></li>
+                    <li><a href="review.php" class="link">Review</a></li>
+                    <li><a href="community.html" class="link">Community</a></li>
+                </ul>
+            </div>
+            <div class="nav-menu-btn">
+                <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+            </div>
+        </nav>
+
+        <div class="container">
+            <h2 class="white-text">Favorites</h2>
+            <p class="white-text">Your favorite movies</p>
+            <div id="favorites-list" class="movies-list">
+                <!-- Favorite movies will be loaded here -->
+            </div>
+        </div>
+
+        <script>
+            // List of movies data (should be replaced with actual data from your server or a separate JS file)
+            const moviesData = {
+                siksakubur: {
+                    title: "Siksa Kubur",
+                    description: "Siksa Kubur adalah film horor psikologis Indonesia tahun 2024 yang disutradarai dan ditulis oleh Joko Anwar...",
+                    img: "uploads/images/siksakuburr.jpg",
+                    trailer: "https://youtu.be/C-iH2aQ-ewY?si=lgRABqEwMcHxOORg"
+                },
+                pyramidgame: {
+                    title: "Pyramid Game",
+                    description: "Pyramid Game adalah seri televisi penjaliran cerita seru psikologis Korea Selatan yang dibuat oleh Lee Jae-gyun...",
+                    img: "uploads/images/pyramidgame.jpeg",
+                    trailer: "https://youtu.be/Bs618ig3iLc?si=FJmlJmTSmPqFQkBc"
+                },
+                vinasebelum7hari: {
+                    title: "Vina: Sebelum 7 Hari",
+                    description: "Kisah misterius mengelilingi kematian mendadak Vina yang jasadnya ditemukan tergeletak di flyover Cirebon...",
+                    img: "uploads/images/download.jpeg",
+                    trailer: "https://youtu.be/SaZ-1HyiFzI?si=tdwGqJvjbYn4bDFU"
+                },
+                possession: {
+                    title: "Possession: Kerasukan",
+                    description: "Setelah berbulan-bulan menjalani tugas ketentaraan, Faris kembali ke rumah dengan harapan bisa bersantai bersama keluarga...",
+                    img: "uploads/images/download (1).jpeg",
+                    trailer: "https://youtu.be/mgXog8uPtPs?si=8vY_r3gnWvtg3o9p"
+                },
+                iparmaut: {
+                    title: "Ipar Adalah Maut",
+                    description: "Berawal dari skenario kreator TikTok, kisah Ipar Adalah Maut dinagkat menjadi film layar lebar...",
+                    img: "uploads/images/download (2).jpeg",
+                    trailer: "https://youtu.be/9M3VN0J5ffM?si=ljNIyZpDRi-tfM5t"
+                },
+                duahatibiru: {
+                    title: "Dua Hati Biru",
+                    description: "Menjalani hidup yang berbeda, Bima dan Dara berusaha untuk membangun rumah tangga dan menjadi orang tua terbaik bagi Adam...",
+                    img: "uploads/images/download (3).jpeg",
+                    trailer: "https://youtu.be/RxlI5cI93Ug?si=_QX02dStNOx9W0zBc"
+                },
+                menjelangajal: {
+                    title: "Menjelang Ajal",
+                    description: "Sekar adalah seorang ibu tangguh yang menghidupi ketiga anaknya dengan berjualan di warung makan kecil...",
+                    img: "uploads/images/download (4).jpeg",
+                    trailer: "https://youtu.be/anMG2fANUjw?si=SyFs5Cnb2rZOdIdB"
+                },
+                temurun: {
+                    title: "Temurun",
+                    description: "Sepasang kakak beradik yang baru saja kehilangan sang ibunda pindah untuk tinggal di kota dan melanjutkan perusahaan produksi daging milik keluarga...",
+                    img: "uploads/images/download (5).jpeg",
+                    trailer: "https://youtu.be/6QGYK9icpJo?si=bvZKu8tN-Hd6fVx0"
+                },
+                tuhanizinkan: {
+                    title: "Tuhan, Izinkan Aku Berdosa",
+                    description: "Film garapan Hanung Bramantyo ini diangkat dari novel fenomenal berjudul 'Tuhan, Izinkan Aku Menjadi Pelacur' karya Muhidin Dahlan...",
+                    img: "uploads/images/download (6).jpeg",
+                    trailer: "https://youtu.be/yfZ74cAyI3o?si=HCLKgggU4hXxf5ZG"
+                }
+            };
+
+            // Function to load favorites
+            function loadFavorites() {
+                const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+                const favoritesList = document.getElementById('favorites-list');
+
+                favorites.forEach(movieId => {
+                    const movie = moviesData[movieId];
+                    if (movie) {
+                        const movieElement = document.createElement('div');
+                        movieElement.classList.add('movie');
+                        movieElement.innerHTML = `
+                            <img src="${movie.img}" alt="${movie.title} Movie Poster">
+                            <h3>${movie.title}</h3>
+                            <p>${movie.description}</p>
+                            <form action="${movie.trailer}" method="GET" target="_blank">
+                                <button type="submit" class="play-button">Trailer</button>
+                            </form>
+                            <button class="favorite-button" onclick="toggleFavorite('${movieId}', this)">&#9829; Remove from Favorites</button>
+                        `;
+                        favoritesList.appendChild(movieElement);
+                    }
+                });
+            }
+
+            // Function to toggle favorites
+            function toggleFavorite(movieId, element) {
+                let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+                const index = favorites.indexOf(movieId);
+                if (index === -1) {
+                    favorites.push(movieId);
+                    localStorage.setItem('favorites', JSON.stringify(favorites));
+                    element.innerHTML = '&#9829; Remove from Favorites';
+                } else {
+                    favorites.splice(index, 1);
+                    localStorage.setItem('favorites', JSON.stringify(favorites));
+                    element.parentElement.remove();
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', loadFavorites);
+        </script>
+    </div>
+</body>
+</html>

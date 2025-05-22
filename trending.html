@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style(1).css">
+    <title>Movieland</title>
+</head>
+<body style="background-color:#111111">
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <img src="uploads/images/movieland2 rev.png" alt="Movieland Logo">
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="home.php" class="link">Home</a></li>
+                    <li><a href="favorites.html" class="link">Favorites</a></li>
+                    <li><a href="trending.html" class="link active">Trending</a></li>
+                    <li><a href="review.php" class="link">Review</a></li>
+                    <li><a href="community.html" class="link">Community</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <h2 class="white-text">Trending Movies</h2>
+            <div class="movies-list">
+                <div class="movie" data-movie-id="pyramidgame">
+                    <img src="uploads/images/pyramidgame.jpeg" alt="Pyramid Game Movie Poster">
+                    <h3>Pyramid Game</h3>
+                    <p>Pyramid Game adalah seri televisi penjaliran cerita seru psikologis Korea Selatan...</p>
+                    <button class="play-button" onclick="window.open('https://youtu.be/xvFZjo5PgG0?si=f6ejdMExb-X91Y0c', '_blank')">Play</button>
+                    <button class="favorite-button" onclick="toggleFavorite('pyramidgame', this)">&#9825; Add to Favorites</button>
+                </div>
+                <div class="movie" data-movie-id="siksakubur">
+                    <img src="uploads/images/siksakuburr.jpg" alt="Siksa Kubur Movie Poster">
+                    <h3>Siksa Kubur</h3>
+                    <p>Siksa Kubur adalah film horor psikologis Indonesia tahun 2024...</p>
+                    <button class="play-button" onclick="window.open('https://youtu.be/C-iH2aQ-ewY?si=lgRABqEwMcHxOORg', '_blank')">Trailer</button>
+                    <button class="favorite-button" onclick="toggleFavorite('siksakubur', this)">&#9825; Add to Favorites</button>
+                </div>
+                <div class="movie" data-movie-id="vinasebelum7hari">
+                    <img src="uploads/images/download.jpeg" alt="Vina: Sebelum 7 Hari Movie Poster">
+                    <h3>Vina: Sebelum 7 Hari</h3>
+                    <p>Kisah misterius mengelilingi kematian mendadak Vina...</p>
+                    <button class="play-button" onclick="window.open('https://youtu.be/SaZ-1HyiFzI?si=tdwGqJvjbYn4bDFU', '_blank')">Trailer</button>
+                    <button class="favorite-button" onclick="toggleFavorite('vinasebelum7hari', this)">&#9825; Add to Favorites</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+      function toggleFavorite(movieId) {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const index = favorites.indexOf(movieId);
+    if (index === -1) {
+        favorites.push(movieId);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        alert('Added to favorites!');
+    } else {
+        favorites.splice(index, 1);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        alert('Removed from favorites!');
+    }
+}
+document.addEventListener('DOMContentLoaded', () => {
+                const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+                const buttons = document.querySelectorAll('.favorite-button');
+
+                buttons.forEach(button => {
+                    const movieId = button.parentElement.getAttribute('data-movie-id');
+                    if (favorites.includes(movieId)) {
+                        button.innerHTML = '&#9829; Remove from Favorites';
+                    }
+                });
+            });
+    </script>
+</body>
+</html>
