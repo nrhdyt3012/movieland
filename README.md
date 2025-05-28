@@ -14,7 +14,8 @@ Movieland is a web application for browsing, searching, and reviewing movies. It
 ## Screenshots
 The documentation of Movieland
 
-![View 1](https://github.com/nrhdyt3012/movieland/blob/main/Screenshot%20374_Screenshot%20375_Screenshot%20376_Screenshot%20377_Screenshot%20378.jpeg)
+![View 1](https://github.com/nrhdyt3012/movieland/blob/main/Screenshot%20374_Screenshot%20375_Screenshot%20376.jpeg)
+![View 2](https://github.com/nrhdyt3012/movieland/blob/main/Screenshot%20378_Screenshot%20377.jpeg)
 
 ## Installation
 
